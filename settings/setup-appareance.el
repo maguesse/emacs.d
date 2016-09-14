@@ -28,4 +28,10 @@
 ;; full path in title bar
 (setq-default frame-title-format "%b (%f)")
 
+;; Add time in mode line
+(setq display-time-24hr-format 1
+      display-time-day-and-date 1
+      display-time-format "%a, %d %b %Y %H:%M")
+(display-time-mode 1)
+
 (provide 'setup-appareance)
