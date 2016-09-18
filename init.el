@@ -29,12 +29,15 @@
       inhibit-splash-screen t
       visible-bell t)
 
+(setq hostname system-name)
+
 (setq site-lisp-dir (expand-file-name "site-lisp" user-emacs-directory)
       settings-dir  (expand-file-name "settings" user-emacs-directory)
       lisp-dir (expand-file-name "lisp" user-emacs-directory))
 
 (setq custom-file (expand-file-name "custom-settings.el" user-emacs-directory)
-      user-defaults-file (expand-file-name "user-defaults.el" user-emacs-directory))
+      user-defaults-file (expand-file-name (concat "users/" user-login-name "-defaults.el") user-emacs-directory)
+      host-defaults-file (expand-file-name (concat "hosts/" hostname "-defaults.el") user-emacs-directory))
 
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
@@ -42,12 +45,15 @@
 
 (when (file-exists-p custom-file) (load custom-file))
 (when (file-exists-p user-defaults-file) (load user-defaults-file))
+(when (file-exists-p host-defaults-file) (load host-defaults-file))
 
 (require 'setup-packages)
 (use-package f)
 (use-package s)
 (use-package dash)
+(require 'setup-ido)
 (require 'setup-appareance)
 (require 'setup-editing)
 (require 'setup-keybindings)
 (require 'setup-misc)
+(require 'setup-magit)

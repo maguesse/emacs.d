@@ -5,3 +5,8 @@ elpa
 history
 recentf
 auto-save-list
+smex-items
+savehist
+users
+.#*
+/ido.last
