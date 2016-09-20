@@ -42,4 +42,52 @@
 
 (electric-pair-mode 1)
 
+;; origami ??
+(use-package origami
+  :bind* (("C-f" . origami-forward-toggle-node))
+  :config
+  (global-origami-mode))
+
+(use-package move-text
+  :bind* (("M-<up>" . move-text-up)
+	  ("M-<down>" . move-text-down)))
+
+(use-package company
+  :diminish company-mode
+  :init (progn
+          (add-hook 'after-init-hook 'global-company-mode)
+          (setq company-dabbrev-ignore-case nil
+                company-dabbrev-code-ignore-case nil
+                company-dabbrev-downcase nil
+                company-idle-delay 0
+                company-begin-commands '(self-insert-command)
+                company-transformers '(company-sort-by-occurrence))
+          (use-package company-quickhelp
+            :config (company-quickhelp-mode 1))))
+
+(use-package multiple-cursors
+  :bind (("C-M-c" . mc/edit-lines)
+	 ("C->" . mc/mark-next-like-this)
+	 ("C-<" . mc/mark-previous-like-this)
+	 ("C-c C-<" . mc/mark-all-like-this)))
+
+(use-package paredit
+  :diminish paredit-mode
+  :config
+  (add-hook 'clojure-mode-hook 'paredit-mode)
+  (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
+
+(use-package yasnippet
+  :diminish yas-global-mode yas-minor-mode
+  :init (add-hook 'after-init-hook 'yas-global-mode)
+  :config (setq yas-snippet-dirs '("~/.emacs.d/snippets/")))
+
+(use-package flyspell
+  :ensure f
+  :diminish flyspell-mode
+  :config
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'org-mode-hook 'flyspell-mode)
+  (add-hook 'markdown-mode-hook 'flyspell-mode))
+
 (provide 'setup-editing)

@@ -10,3 +10,4 @@ savehist
 users
 .#*
 /ido.last
+*.el~

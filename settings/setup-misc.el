@@ -55,6 +55,9 @@
         search-ring
         regexp-search-ring))
 
+;; misc misc
+(winner-mode 1)
+
 (setq x-select-enable-clipboard t
       x-select-enable-primary t
       save-interprogram-paste-before-kill t

@@ -13,6 +13,7 @@
 ;; - https://github.com/purcell/emacs.d
 ;; - https://github.com/flyingmachine/emacs-for-clojure
 ;; - https://github.com/bodil/ohai-emacs
+;; - http://www.jethrokuan.com/init.html
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -51,9 +52,11 @@
 (use-package f)
 (use-package s)
 (use-package dash)
-(require 'setup-ido)
+(require 'setup-misc)
+;;(require 'setup-ido)
+(require 'setup-ivy)
 (require 'setup-appareance)
 (require 'setup-editing)
 (require 'setup-keybindings)
-(require 'setup-misc)
 (require 'setup-magit)
+(require 'setup-clojure)
