@@ -12,3 +12,4 @@ users
 /ido.last
 *.el~
 /themes/solarized-theme.el
+url
