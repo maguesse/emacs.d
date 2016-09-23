@@ -1,6 +1,7 @@
 ;; setup-ivy
 
-
+(use-package counsel
+  :defer t)
 
 ;; avy - mode between visible text
 (use-package avy
