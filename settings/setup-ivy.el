@@ -1,7 +1,9 @@
 ;; setup-ivy
 
 (use-package counsel
-  :defer t)
+  :defer t
+  :config
+  (setq counsel-find-file-ignore-regexp "\\`\\."))
 
 ;; avy - mode between visible text
 (use-package avy
@@ -14,7 +16,8 @@
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
-	ivy-count-format "(%d/%d) ")
+	ivy-count-format "(%d/%d) "
+	ivy-display-style 'fancy)
   :bind*
   (("C-s" . swiper)
    ("C-r" . swipper)
