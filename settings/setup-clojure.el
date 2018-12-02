@@ -15,19 +15,21 @@
   (add-hook 'clojure-mode-hook #'clj-refactor-mode))
 
 ;; cider
-(use-package cider
-  :init (add-hook 'cider-mode-hook #'clj-refactor-mode)
-  :diminish subword-mode
-  :config
-  (setq nrepl-log-messages t                  
-        cider-repl-display-in-current-window t
-        cider-repl-use-clojure-font-lock t    
-        cider-prompt-save-file-on-load 'always-save
-        cider-font-lock-dynamically '(macro core function var)
-        nrepl-hide-special-buffers t            
-        cider-overlays-use-font-lock t)         
-  (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
-  (cider-repl-toggle-pretty-printing))
+;; (use-package cider
+;;   :init (add-hook 'cider-mode-hook #'clj-refactor-mode)
+;;   :diminish subword-mode
+;;   :config
+;;   (setq nrepl-log-messages t                  
+;;         cider-repl-display-in-current-window t
+;;         cider-repl-use-clojure-font-lock t    
+;;         cider-prompt-save-file-on-load 'always-save
+;;         cider-font-lock-dynamically '(macro core function var)
+;;         nrepl-hide-special-buffers t            
+;;         cider-overlays-use-font-lock t)         
+;;   (setq cider-cljs-lein-repl "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
+;;   (cider-repl-toggle-pretty-printing))
+
+(use-package cider)
 
 
 (use-package clj-refactor
