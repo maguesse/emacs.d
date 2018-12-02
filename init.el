@@ -20,15 +20,18 @@
 (package-initialize)
 
 ;; Temporarily reduce GC
-(defconst sanityinc/initial-gc-cons-threshold gc-cons-threshold
+(defconst ma/initial-gc-cons-threshold gc-cons-threshold
   "Initial value of `gc-cons-threshold' at startup.")
 (setq gc-cons-threshold (* 128 1024 1024))
 (add-hook 'after-init-hook
-	  (lambda() (setq gc-cons-threshold sanityinc/initial-gc-cons-threshold)))
+	  (lambda() (setq gc-cons-threshold ma/initial-gc-cons-threshold)))
 
 (setq inhibit-startup-message t
       inhibit-splash-screen t
       visible-bell t)
+
+(setq ad-redefinition-action 'accept)
+
 
 (setq hostname system-name)
 
@@ -43,6 +46,22 @@
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
 (add-to-list 'load-path lisp-dir)
+
+;; Display the total loading time in the menubuffer
+(defun display-startup-echo-area-message ()
+  "Display startup echo area message."
+  (message "Initialized in %s" (emacs-init-time)))
+
+(when init-file-debug
+  (require 'benchmark))
+
+(mapc (lambda (fname)
+               (let ((feat (intern (file-name-base fname))))
+                 (if init-file-debug
+                     (message "Feature '%s' loaded in %.2fs" feat
+                              (benchmark-elapse (require feat fname)))
+                   (require feat fname))))
+        (directory-files settings-dir t "\\.el"))
 
 (when (file-exists-p custom-file) (load custom-file))
 (when (file-exists-p user-defaults-file) (load user-defaults-file))
